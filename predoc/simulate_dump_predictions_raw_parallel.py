@@ -242,7 +242,7 @@ if __name__ == "__main__":
         try:
             coefs_df = predics_df[[i for i in predics_df.columns if "tranf" in i]]
 
-            """
+            
             save_data(
             coefs_df,
             args.output_path,
@@ -256,7 +256,7 @@ if __name__ == "__main__":
             + args.suffix
             + ".parquet",
             "parquet")
-            """
+            
 
             predics_df = predics_df.drop(coefs_df.columns, axis=1)
 
