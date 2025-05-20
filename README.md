@@ -1,68 +1,69 @@
-# Repositorio principal para el proyecto bps-az-hgsoc
+# Main repository for the predOC project
 
 ## Setup
-Para facilitar el cambio de máquinas se utilizará un arvhivo de definción de variables
-de entorno `.env`. Dicho archivo se colocará en la raíz del repositorio, una vez clonado éste. Hay un fichero de ejemplo en los assets.
+To facilitate switching between machines, an environment variable definition file `.env` will be used. This file will be placed in the root of the repository once it is cloned. There is an example file in the assets.
 
-### Clonar el repositorio
+### Clone the repository
 
-Clonamos el repositorio, preferiblemente trabajar medinate `ssh`.
+Clone the repository, preferably working via `ssh`.
 ```
-git clone git@gitlab.cbra.com:bps-az-hgsoc/hgsoc_ml.git
-cd hgsoc_ml
-```
-
-### Definir variables de entorno específicas del usuario
-
-Primero, copiamos el archivo `.env` de ejemplo
-```
-cp hgsoc_ml/resources/assets/.env .
+git@github.com:babelomics/predoc.git
+cd predoc
 ```
 
-Se asigna a la variable `ENV_FOLDER` la ruta donde se creará el entorno de conda. Supongamos que los entornos han de estar ubicados en, por ejemplo, `/NAS/users/lou/coda_envs`.
+### Define user-specific environment variables
 
-Además, se asigna a la variable `DATA_PATH` la ruta donde están los datos, por ejemplo, `/mnt/NAS/projects/bps_dumps/bps-az-hgsoc`. Por lo que el fichero `.env` quedaría algo así, finalmente:
+First, copy the example `.env` file.
+```
+cp predoc/resources/assets/.env .
+```
+
+Assign the path where the conda environment will be created to the `ENV_FOLDER` variable. Let's assume the environments should be located in, for example, `~/conda_envs`.
+
+Additionally, assign the path where the data is located to the `DATA_PATH` variable, for example, `~/projects/bps_dumps/predoc`. Therefore, the `.env` file would finally look something like this:
 
 ```
-ENV_FOLDER=/NAS/users/lou/coda_envs/hgsoc_ml
-DATA_PATH=/mnt/NAS/projects/bps_dumps/bps-az-hgsoc
+ENV_FOLDER=~/conda_envs
+DATA_PATH=~/projects/bps_dumps/predoc
 
-# -- Variables usadas en hgsoc_ml/omop/
-# Ruta hacia los datos remototos
+# -- Variables used in predoc/omop/
+# Path to remote data
 REMOTE_DATA_PATH="/folder_1/.../folder_n/data/"
-# Usuario y nombre maquina (IP o según .ssh/config) a la que conectar
+# User and machine name (IP or according to .ssh/config) to connect to
 REMOTE_USER="username"
 REMOTE_HOST="hostname"
-# Ruta donde se guardarán localmente los datos
+# Path where data will be saved locally
 LOCAL_DATA_DIR="/folder_1/.../folder_n/data/"
-# Ruta donde se guardan las tablas omop ampliadas
+# Path where extended OMOP tables are saved
 OMOP_EXTENDED_DIR="/folder_1/.../folder_n/OMOP_Vocab_Extended/"
 ```
 
-Cabe señalar que la ruta `/NAS/users/lou/coda_envs/` debe existir y permitir la escritura.
+It should be noted that the path `~/conda_envs` must exist and allow writing.
 
-### Instalación
+### Installation
 
-Usaremos GNU `make` para simplificar la tarea de instalación, generación de binarios, documentación, etc. Por tanto, bastará con ejecutar el `makefile` del proyecto:
+We will use GNU `make` to simplify the task of installation, generation of binaries, documentation, etc. Therefore, it will be sufficient to execute the project's `makefile`:
 
 ```
 make
 ```
 
-# Instalacion bps_to_omop como submodulo
+# Installation of bps_to_omop as a submodule
 
-Para poder hacer uso del código en el repositorio *bps_to_omop*, hemos decidido incluirlo en este mismo repositorio como [submodulo](https://git-scm.com/book/es/v2/Herramientas-de-Git-Subm%C3%B3dulos).
+To be able to use the code in the *bps_to_omop* repository, we have decided to include it in this same repository as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
-Esto nos permite desarrollar ambos proyectos a la vez, adaptando *bps_to_omop* **en una rama específica** según nos sea necesario.
+This allows us to develop both projects at the same time, adapting *bps_to_omop* **on a specific branch** as needed.
 
-Para incluir *bps_to_omop* como submodulo creamos una nueva carpeta `lib/` y usamos el comando submodule de git:
+To include *bps_to_omop* as a submodule, we create a new `lib/` folder and use the git submodule command:
 
-    mkdir lib
-    git submodule add https://gitlab.clinbioinfosspa.es/igutierrez/bps_to_omop.git lib/bps_to_omop
-    git commit -m "Add bps_to_omop as a submodule"
+```
+mkdir lib
+git submodule add [https://gitlab.clinbioinfosspa.es/igutierrez/bps_to_omop.git](https://gitlab.clinbioinfosspa.es/igutierrez/bps_to_omop.git) lib/bps_to_omop
+git commit -m "Add bps_to_omop as a submodule"
 
-    cd lib/bps_to_omop
-    git branch hgsoc
-    git checkout hgsoc
+cd lib/bps_to_omop
+git branch hgsoc
+git checkout hgsoc
+```
 
-Es importante destacar que si hacemos cualquier cambio en *bps_to_omop* dentro de `lib/` **será necesario hacer el commit para ambos repositorios**, primero en *bps_to_omop* y luego en *hgsoc*. 
+It is important to note that if we make any changes to *bps_to_omop* within `lib/` **it will be necessary to commit for both repositories**, first in *bps_to_omop* and then in *hgsoc*.
