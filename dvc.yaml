@@ -1,0 +1,54 @@
+stages:
+  retrieve_raw_omop_data:
+    cmd: ./predoc/retrieve_raw_omop_data.sh
+    deps:
+    - predoc/retrieve_raw_omop_data.sh
+    outs:
+    - data/omop/raw
+  clean_raw_data:
+    cmd: ./.venv/bin/python ./predoc/clean_raw_data.py
+    params:
+    - ban_codes
+    deps:
+    - data/omop/raw
+    - predoc/clean_raw_data.py
+    outs:
+    - data/omop/rare
+  adapt_omop:
+    cmd: ./.venv/bin/python ./predoc/adapt_omop.py
+    params:
+    - target_diagnosis_concept_id
+    deps:
+    - data/omop/rare
+    - predoc/adapt_omop.py
+    outs:
+    - data/omop/done
+  train_OMOP:
+    cmd: ./predoc/train_OMOP.sh
+    deps:
+    - data/omop/done
+    - predoc/clean_raw_wrapper.py
+    - predoc/generate_dummies.py
+    - predoc/train_L2orEBM.py
+    - predoc/train_OMOP.sh
+    outs:
+    - data/omop/train
+  simulate_OMOP:
+    cmd: ./predoc/simulate_OMOP.sh
+    deps:
+    - data/omop/train
+    - predoc/clean_raw_wrapper.py
+    - predoc/generate_dummies.py
+    - predoc/simulate_OMOP.sh
+    - predoc/simulate_dump_predictions_raw_parallel.py
+    outs:
+    - data/omop/simulate
+  validate_OMOP:
+    cmd: ./predoc/validate_OMOP.sh
+    deps:
+    - data/omop/simulate
+    - data/omop/train
+    - predoc/thresholds_parallel.py
+    - predoc/validate_OMOP.sh
+    outs:
+    - data/omop/validate

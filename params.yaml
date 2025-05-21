@@ -1,0 +1,6 @@
+# -- clean_raw_data params --
+ban_codes:
+- 2000000034
+- 2000000035
+# -- adapt_omop params --
+target_diagnosis_concept_id: 2000000033
