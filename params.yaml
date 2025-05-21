@@ -4,6 +4,3 @@ ban_codes:
 - 2000000035
 # -- adapt_omop params --
 target_diagnosis_concept_id: 2000000033
-# -- 
-n_people: False
-seed: 42
