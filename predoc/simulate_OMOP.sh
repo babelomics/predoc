@@ -1,0 +1,1 @@
+python ./predoc/simulate_dump_predictions_raw_parallel.py --model_name EBM_180history-0horizon_.sav   --horizon 0  --history 180 --year_min 2018 --year_max 2022 --data_path omop/done --metadata yes --full_data_path omop/done --model_path omop/train/ebm_0_180_seed1 --output_path omop/simulate

@@ -1,0 +1,1 @@
+python ./predoc/train_L2orEBM.py --seed 1 --horizon 0 --history 180 --training_year_min 2018 --training_year_max 2021 --year_test 2022 --validation_month_min 1 --validation_month_max 12  --control_validation_prop 0.3 --control_test_prop 0.3 --model EBM --data_path omop/done --output_path omop/train/ebm_0_180_seed1 --min_age 50 --max_age 90
