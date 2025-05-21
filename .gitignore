@@ -227,3 +227,4 @@ rsconnect/
 data/
 !hgsoc_ml/resources/assets/.envnohup.out
 nohup.out
+sandbox/
