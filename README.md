@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/986839072.svg)](https://doi.org/10.5281/zenodo.15482577)
+
 # Main repository for the predOC project
 
 ## Setup
