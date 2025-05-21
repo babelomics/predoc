@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 print("Reading parameters...")
 load_dotenv()
 # Define entrada y salida de archivos
-main_dir = os.environ.get("LOCAL_DATA_DIR")
+main_dir = os.environ.get("DATA_PATH")
 input_dir = f"{main_dir}/omop/rare/"
 output_dir = f"{main_dir}/omop/done/"
 os.makedirs(output_dir, exist_ok=True)
