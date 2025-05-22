@@ -46,7 +46,7 @@ def set_predictions(predictions_df, threshold=0.15):
         predictions_df[predictions_df["proba"] >= threshold].index.unique(), "pred"
     ] = 1
     predictions_df["pred"].fillna(-1, inplace=True)
-    predictions_df.set_index("index", inplace=True)
+    predictions_df.set_index("person_id", inplace=True)
 
     pos = predictions_df[(predictions_df["pred"] == 1)].sort_values("dump_date")
     pos = pos[~pos.index.duplicated(keep="first")]
@@ -93,7 +93,7 @@ def earliness_test(
     df = set_predictions(df)
 
     ## set days to diagnosis
-    df["days_to_diag"] = (df["fecha_inicio"] - df["dump_date"]).dt.days
+    df["days_to_diag"] = (df["main_condition_start_date"] - df["dump_date"]).dt.days
 
     ## keep first positive prediction and group predictions over 360 days together
     pos = df[df["pred"] == 1]
@@ -278,10 +278,10 @@ def get_feature_trajectories(
 
 
 def interpretability(
-    data_path, model_name="EBM_180history-30horizon_.sav", top=10, single_file=True
+    train_data_path, simulate_data_path, model_name="EBM_180history-30horizon_.sav", top=10, single_file=True
 ):
-    vals = get_mean_abs_score(data_path=data_path, model_name=model_name)
-    feature_trajectories = get_feature_trajectories(data_path, single_file=single_file)
+    vals = get_mean_abs_score(data_path=train_data_path, model_name=model_name)
+    feature_trajectories = get_feature_trajectories(simulate_data_path, single_file=single_file)
 
     ## plot fixed size interpretability plot
     fig, ax = plt.subplots(2, 1, figsize=(6, 6), gridspec_kw={"hspace": 0.5})
