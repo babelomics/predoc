@@ -17,7 +17,7 @@ cd predoc
 
 First, copy the example `.env` file.
 ```bash
-cp predoc/resources/assets/.env .
+cp ./assets/example.env .env
 ```
 
 Assign the path where the conda environment will be created to the `ENV_FOLDER` variable. Let's assume the environments should be located in, for example, `~/conda_envs`.
