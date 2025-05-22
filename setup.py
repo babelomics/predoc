@@ -9,6 +9,6 @@ setup(
             'predoc = predoc.trainer:main',
         ],
     },
-    version='0.1.0',
+    version='0.9.9',
     license='MIT'
 )
