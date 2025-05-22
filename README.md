@@ -145,21 +145,21 @@ Our source data have a local vocabulary that we had to map to the standard OMOP 
 
 ## Personnel
 
-### Contributos
+### Contributors
 
-Victor Manuel de la Oliva Roque [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-1444-3465)
+Victor Manuel de la Oliva Roque [![ORCID](https://img.shields.io/badge/orcid-0000--0002--1444--3465-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-1444-3465)
 
-Alberto Esteban-Medina [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-2265-0410)
+Alberto Esteban-Medina [![ORCID](https://img.shields.io/badge/orcid-0000--0003--2265--0410-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-2265-0410)
 
-Laura Alejos [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-1444-3465)
+Laura Alejos [![ORCID](https://img.shields.io/badge/orcid-0009--0004--3564--9544-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0004-3564-9544)
 
-Isidoro Gutiérrez-Álvarez [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-9078-3007)
+Isidoro Gutiérrez-Álvarez [![ORCID](https://img.shields.io/badge/orcid-0000--0002--9078--3007-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-9078-3007)
 
 ### Scientific Management
 Carlos Loucera [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9598-6965)
 
 ### Management
-Joaquin Dopazo [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-3318-120X)
+Joaquin Dopazo [![ORCID](https://img.shields.io/badge/orcid-0000--0003--3318--120X-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-3318-120X)
 
 
 ## Aknowledgements
