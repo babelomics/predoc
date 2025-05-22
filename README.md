@@ -52,7 +52,7 @@ This repository uses [DVC](https://dvc.org/) to manage a pipeline that will retr
 
 #### Pipeline Overview
 
-![Pipeline DAG](./pipeline.svg)
+![Pipeline DAG](./assets/pipeline.svg)
 
 #### Stages short description
 
