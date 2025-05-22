@@ -1,4 +1,6 @@
 [![DOI](https://zenodo.org/badge/986839072.svg)](https://doi.org/10.5281/zenodo.15482577)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 # Main repository for the predOC project
 
