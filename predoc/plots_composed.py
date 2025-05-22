@@ -12,30 +12,29 @@ from predoc.clean_raw_functions import filtered_txt
 from predoc.dictionaries_columns import translations_dict
 from predoc.model_performance import calc_area, calc_av_precision, get_predictions
 from predoc.utils import load_data, load_model, save_data
+from predoc.datasets import data_dir
 
 
 def age_limit(
     predictions_df,
-    data_path="raw/20231214",
-    demo_file="01_Datos_Sociodemograficos.txt",
+    data_path=f"{data_dir}/omop/done/",
+    demo_file="pats.parquet",
     threshold=0.15,
 ):
     ## load and clean file containing patient diagnosis and birth date. Merge with predictions dataframe
     pats = load_data(demo_file, data_path)
     pats = filtered_txt(
         pats,
-        column_date=["COD_FEC_NACIMIENTO", "FECHA_INICIO"],
-        nuhsa_column="NUHSA_ENCRIPTADO",
-        selected_column=["COD_FEC_NACIMIENTO", "FECHA_INICIO"],
+        column_date=["birth_datetime", "main_condition_start_date"],
+        nuhsa_column="person_id",
+        selected_column=["birth_datetime", "main_condition_start_date"],
     )
 
     df = predictions_df.merge(pats, right_index=True, left_index=True).reset_index()
 
     ### remove predictions carried out for patients < 50 years
     df["dump_date"] = pd.to_datetime(df["dump_date"])
-    df["age"] = ((df["dump_date"] - df["cod_fec_nacimiento"]).dt.days / 365.25).astype(
-        int
-    )
+    df["age"] = ((df["dump_date"] - df["birth_datetime"]).dt.days / 365.25).astype(int)
     df = df[df["age"] >= 50]
 
     return df
@@ -62,6 +61,7 @@ def set_predictions(predictions_df, threshold=0.15):
     return predictions_df
 
 
+# TODO: Adapt cols in this function to OMOP
 def earliness_test(
     data_path,
     suffix_out="",
@@ -77,7 +77,7 @@ def earliness_test(
         year_max,
         horizon,
         history,
-        data_path,
+        data_path,  # simulation_path
         suffix="",
         meta="",
         prefix="predics",
@@ -590,7 +590,7 @@ def get_corr_values(scores):
                 # tau_array.append(tau)
                 correlation_values[f"{col1}_{col2}"] = tau
     tau_df = pd.DataFrame(
-        correlation_values, index=["Kendall's weighted \u03C4 coefficient"]
+        correlation_values, index=["Kendall's weighted \u03c4 coefficient"]
     ).T
 
     return tau_df
@@ -752,7 +752,7 @@ def stability(
 
     ax4.grid(visible=True, alpha=0.4, zorder=-1)
 
-    sns.histplot(scores_tau, x="Kendall's weighted \u03C4 coefficient", ax=ax4)
+    sns.histplot(scores_tau, x="Kendall's weighted \u03c4 coefficient", ax=ax4)
 
     sns.despine(top=True, right=True, ax=ax4)
 
