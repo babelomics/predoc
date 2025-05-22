@@ -211,10 +211,19 @@ def get_mean_abs_score(data_path, model_name, top=10):
 
     return top_vals
 
+# %%
+
+data_path =f"{data_dir}/omop/simulate/"
+single="5278413491"
+single_file=True
+year_min=2018
+year_max=2022
+horizon=30
+history=180
 
 def get_feature_trajectories(
     data_path,
-    single="*REDACTED*",
+    single,
     single_file=True,
     year_min=2018,
     year_max=2022,
@@ -278,10 +287,15 @@ def get_feature_trajectories(
 
 
 def interpretability(
-    train_data_path, simulate_data_path, model_name="EBM_180history-30horizon_.sav", top=10, single_file=True
+    train_data_path, 
+    simulate_data_path, 
+    single,
+    model_name="EBM_180history-30horizon_.sav", 
+    top=10, 
+    single_file=True,
 ):
     vals = get_mean_abs_score(data_path=train_data_path, model_name=model_name)
-    feature_trajectories = get_feature_trajectories(simulate_data_path, single_file=single_file)
+    feature_trajectories = get_feature_trajectories(simulate_data_path, single=single, single_file=single_file)
 
     ## plot fixed size interpretability plot
     fig, ax = plt.subplots(2, 1, figsize=(6, 6), gridspec_kw={"hspace": 0.5})
