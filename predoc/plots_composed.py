@@ -77,7 +77,7 @@ def earliness_test(
         year_max,
         horizon,
         history,
-        data_path,  # simulation_path
+        data_path=f"{data_path}/omop/simulate",  # simulation_path
         suffix="",
         meta="",
         prefix="predics",
@@ -136,7 +136,7 @@ def earliness_test(
 
 
 def curves_test(data_path, curves_file="metrics_thresholds_test_parallel.parquet"):
-    df = load_data(curves_file, data_path)
+    df = load_data(curves_file, f"{data_path}/omop/validate")
     df.loc[len(df)] = {"Precision": 1, "Recall": 0}
 
     ## plot fixed size metrics curves
@@ -189,7 +189,7 @@ def curves_test(data_path, curves_file="metrics_thresholds_test_parallel.parquet
 
 
 def get_mean_abs_score(data_path, model_name, top=10):
-    model = load_model(model_name, data_path)
+    model = load_model(model_name, f"{data_path}/omop/train")
 
     ## extract variable names and mean absolute scores
     vals = {}
@@ -211,7 +211,7 @@ def get_mean_abs_score(data_path, model_name, top=10):
 
     return top_vals
 
-# %%
+# %%dd
 
 data_path =f"{data_dir}/omop/simulate/"
 single="5278413491"
@@ -232,7 +232,7 @@ def get_feature_trajectories(
 ):
     if single_file:
         coefs = load_data(
-            f"feature_trajectories_{year_min}_{year_max}.parquet", data_path
+            f"feature_trajectories_{year_min}_{year_max}.parquet", f"{data_path}/omop/simulate"
         )
     else:
         coefs = get_predictions(
@@ -247,7 +247,7 @@ def get_feature_trajectories(
         )
         save_data(
             coefs,
-            data_path,
+            f"{data_path}/omop/simulate",
             f"feature_trajectories_{year_min}_{year_max}.parquet",
             "parquet",
         )
@@ -287,15 +287,15 @@ def get_feature_trajectories(
 
 
 def interpretability(
-    train_data_path, 
-    simulate_data_path, 
+    data_path, 
+    data_path, 
     single,
     model_name="EBM_180history-30horizon_.sav", 
     top=10, 
     single_file=True,
 ):
-    vals = get_mean_abs_score(data_path=train_data_path, model_name=model_name)
-    feature_trajectories = get_feature_trajectories(simulate_data_path, single=single, single_file=single_file)
+    vals = get_mean_abs_score(data_path=f"{data_path}/omop/train", model_name=model_name)
+    feature_trajectories = get_feature_trajectories(f"{data_path}/omop/simulate", single=single, single_file=single_file)
 
     ## plot fixed size interpretability plot
     fig, ax = plt.subplots(2, 1, figsize=(6, 6), gridspec_kw={"hspace": 0.5})
@@ -431,22 +431,22 @@ def join_seeds(
 ):
     if set_ == "test":
         keep = load_data(
-            "control_test_.parquet", f"{data_path}/ebm_{horizon}_{history}_seed1"
+            "control_test_.parquet", f"{data_path}/ebm_{horizon}_{history}_seed1/simulate"
         ).index.unique()
     elif set_ == "val":
         keep = load_data(
-            "control_val_.parquet", f"{data_path}/ebm_{horizon}_{history}_seed1"
+            "control_val_.parquet", f"{data_path}/ebm_{horizon}_{history}_seed1/simulate"
         ).index.unique()
 
     D = {}
     for i in range(1, 101):
-        print(f"{data_path}/ebm_{horizon}_{history}_seed{i}")
+        print(f"{data_path}/ebm_{horizon}_{history}_seed{i}/simulate")
         df = get_predictions(
             year_min,
             year_max,
             horizon,
             history,
-            f"{data_path}/ebm_{horizon}_{history}_seed{i}",
+            f"{data_path}/ebm_{horizon}_{history}_seed{i}/simulate",
             suffix="",
             meta="",
             prefix="predics",
@@ -498,7 +498,7 @@ def get_probabilities_seeds(
     if seed_file:
         seeds = load_data(
             f"all_probabilities_seeds_{horizon}horizon_{history}history_{set_}_threshold{threshold}.parquet",
-            data_path,
+            f"{data_path}/simulate",
         )
     else:
         seeds = join_seeds(data_path, set_=set_, threshold=threshold)
@@ -516,7 +516,7 @@ def get_metrics_seeds(
 ):
     D = {}
     for i in range(1, 101):
-        met = load_data(metrics_file, f"{data_path}/ebm_{horizon}_{history}_seed{i}")
+        met = load_data(metrics_file, f"{data_path}/ebm_{horizon}_{history}_seed{i}/simulate")
         if isinstance(met, str):
             pass
         else:
@@ -537,7 +537,7 @@ def get_curves_seeds(
 ):
     D = {}
     for i in range(1, 101):
-        cur = load_data(thresholds_file, f"{data_path}/ebm_30_180_seed{i}")
+        cur = load_data(thresholds_file, f"{data_path}/ebm_30_180_seed{i}/validate")
         if isinstance(cur, str):
             pass
         else:
@@ -566,11 +566,11 @@ def get_curves_seeds(
     return auroc, auprc
 
 
-def get_scores_seeds(data_path="sandbox/voliva"):
+def get_scores_seeds(data_path):
     D_mods = {}
     for i in range(1, 101):
         mod = load_model(
-            "EBM_180history-30horizon_.sav", f"{data_path}/ebm_30_180_seed{i}"
+            "EBM_180history-30horizon_.sav", f"{data_path}/ebm_30_180_seed{i}/train"
         )
         D_scores = {}
         for p, j in zip(
@@ -663,7 +663,7 @@ def stability(
     threshold=0.15,
 ):
     probabilities = get_probabilities_seeds(
-        f"{data_path}",
+        f"{data_path}/simulate",
         min_year,
         max_year,
         n_jobs=92,
@@ -676,7 +676,7 @@ def stability(
     probabilities = prob_diff(probabilities)
 
     metrics = get_metrics_seeds(
-        data_path, metrics_file=metrics_file, horizon=horizon, history=history
+        f"{data_path}/validate", metrics_file=metrics_file, horizon=horizon, history=history
     )
     metrics = metrics[
         metrics["Metric"].isin(
@@ -877,7 +877,7 @@ def get_fixed_horizon_various_history(
     for x in range(len(history)):
         for y in range(len(seeds)):
             df = load_data(
-                metrics_file, f"{data_path}/ebm_{horizon}_{history[x]}_seed{seeds[y]}"
+                metrics_file, f"{data_path}/ebm_{horizon}_{history[x]}_seed{seeds[y]}/validate"
             )
             if not isinstance(df, str):
                 avprec = calc_av_precision(df.dropna(subset=["Threshold"]))
@@ -922,7 +922,7 @@ def distribution_auprc_med_days(
     recall=0.58,
 ):
     his_hor = get_fixed_horizon_various_history(
-        data_path, horizon=horizon, history=history, seeds=seeds
+        f"{data_path}/validate", horizon=horizon, history=history, seeds=seeds
     )
 
     med_days = get_med_days_seed(his_hor, recall=recall)
@@ -996,7 +996,7 @@ def get_various_horizon_various_history(
     for x in range(len(history)):
         for y in range(len(horizon)):
             df = load_data(
-                metrics_file, f"sandbox/voliva/ebm_{horizon[y]}_{history[x]}"
+                metrics_file, f"{data_path}ebm_{horizon[y]}_{history[x]}/validate"
             )
             if not isinstance(df, str):
                 df = df.append(
@@ -1061,9 +1061,9 @@ def heat_pareto(
     seeds=[i for i in range(1, 101)],
     recall=0.58,
 ):
-    his_hor_all, heat_prec_rec = get_various_horizon_various_history(data_path)
+    his_hor_all, heat_prec_rec = get_various_horizon_various_history(f"{data_path}/simulate")
     his_hor_30 = get_fixed_horizon_various_history(
-        data_path, horizon=horizon, history=history, seeds=seeds
+        f"{data_path}/simulate", horizon=horizon, history=history, seeds=seeds
     )
 
     med_days = get_med_days_seed(his_hor_30, recall=recall)
@@ -1182,7 +1182,7 @@ def curves_ablation(
 
     D = {}
     for i, j in zip(sets, nice):
-        df = load_data(metrics_file, f"{data_path}/{i}")
+        df = load_data(metrics_file, f"{data_path}/{i}/validate")
         df.loc[len(df)] = {"Recall": 1, "False Positive Rate": 1}
         df.loc[len(df)] = {"Precision": 1, "Recall": 0}
         df.loc[len(df)] = {"Precision gain": 1, "Recall gain": 0}
@@ -1346,11 +1346,11 @@ def curves_algos(data_path):
         print(i)
         df = load_data(
             "metrics_thresholds_30horizon_180history_test.parquet",
-            f"sandbox/voliva/{i}",
+            f"{data_path}/{i}/validate",
         )
         D_algos[i] = df
     enet = load_data(
-        "metrics_thresholds_test_parallel.parquet", "sandbox/voliva/enet_seed1"
+        "metrics_thresholds_test_parallel.parquet", f"{data_path}/enet_seed1/validate"
     ).rename(columns={"Sensitivity": "1-FPR"})
     enet = enet[enet["Recall gain"] >= 0]
     D_algos["enet_seed1"] = enet
