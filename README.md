@@ -1,4 +1,10 @@
+[![DOI](https://zenodo.org/badge/986839072.svg)](https://doi.org/10.5281/zenodo.15482577)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 # Main repository for the predOC project
+
+This study developed a machine learning model to predict early risk of high-grade serous ovarian cancer (HGSOC) using electronic health records (EHR) from the Andalusian Health Population Database, which covers over 15 million individuals. Employing an Explainable Boosting Machine (EBM) algorithm, the model was trained on 3,088 HGSOC patients and 114,942 matched controls, achieving a sensitivity of 0.65 and a specificity of 0.85 in identifying high-risk individuals. Key predictors included age, abdominal pain, musculoskeletal and heart conditions, endocrine disorders, and specific blood parameters. The model provided early risk assessment, identifying HGSOC risk before diagnosis for a significant number of cases, with a median lead time of 101 days (Q1: 34 days, Q3: 435.5 days) before diagnosis. This research suggests the model's potential as a cost-effective, scalable pre-screening tool for early HGSOC detection using routine EHR data, potentially leading to earlier interventions and improved patient outcomes. The study was funded by AstraZeneca and grants from the Spanish Ministry of Science and Innovation and Consejeria de Salud y Consumo, Junta de Andalucía.
 
 ## Setup
 To facilitate switching between machines, an environment variable definition file `.env` will be used. This file will be placed in the root of the repository once it is cloned. There is an example file in the assets.
@@ -15,7 +21,7 @@ cd predoc
 
 First, copy the example `.env` file.
 ```bash
-cp predoc/resources/assets/.env .
+cp ./assets/example.env .env
 ```
 
 Assign the path where the conda environment will be created to the `ENV_FOLDER` variable. Let's assume the environments should be located in, for example, `~/conda_envs`.
@@ -44,13 +50,15 @@ We will use GNU `make` to simplify the task of installation, generation of binar
 make
 ```
 
+The `makefile` uses the provided `environment.yml` file for the installation of the conda environment. The `environment.yml` file is located in the root of the repository. However, we provide a *lock* file to ensure that a CUDA capable machine can reproduce the environment where our model was trained. The lock file is located in the `env_linux64_cuda.txt` file. This file is used to recreate this specific conda environment.
+
 ### Pipeline
 
 This repository uses [DVC](https://dvc.org/) to manage a pipeline that will retrieve and clean the data before training the model.
 
 #### Pipeline Overview
 
-![Pipeline DAG](./pipeline.svg)
+![Pipeline DAG](./assets/pipeline.svg)
 
 #### Stages short description
 
@@ -98,7 +106,7 @@ This repository uses [DVC](https://dvc.org/) to manage a pipeline that will retr
 
 #### Data
 
-The pipeline expects to find the OMOP tables in .parquet format within the folder defined by the environment variable `REMOTE_RAW_OMOP_DATA`. The contents of this directory will be copied in
+The model was designed to work with [OMOP-CDM v5.4](https://ohdsi.github.io/CommonDataModel/cdm54.html) tables. The pipeline expects to find the OMOP tables in .parquet format within the folder defined by the environment variable `REMOTE_RAW_OMOP_DATA`. The contents of this directory will be copied in
 a local folder defined by the environment variable `DATA_PATH`. In our implementation, this variable should point to a `data/` folder inside the repository, which is ignored by git.
 
 Please note that depending on the dvc version you use folders monitored by DVC cannot exist
@@ -136,3 +144,30 @@ Parameters are stored in `params.yaml`. Key parameters:
 Our source data have a local vocabulary that we had to map to the standard OMOP vocabulary:
 
 - 2000000033 is our local OMOP code for ovarian cancer.
+
+## Personnel
+
+### Contributors
+
+Victor Manuel de la Oliva Roque [![ORCID](https://img.shields.io/badge/orcid-0000--0002--1444--3465-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-1444-3465)
+
+Alberto Esteban-Medina [![ORCID](https://img.shields.io/badge/orcid-0000--0003--2265--0410-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-2265-0410)
+
+Laura Alejos [![ORCID](https://img.shields.io/badge/orcid-0009--0004--3564--9544-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0004-3564-9544)
+
+Isidoro Gutiérrez-Álvarez [![ORCID](https://img.shields.io/badge/orcid-0000--0002--9078--3007-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-9078-3007)
+
+### Scientific Management
+Carlos Loucera [![ORCID](https://img.shields.io/badge/orcid-0000--0001--9598--6965-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9598-6965)
+
+### Management
+Joaquin Dopazo [![ORCID](https://img.shields.io/badge/orcid-0000--0003--3318--120X-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-3318-120X)
+
+
+## Aknowledgements
+
+This project would not have been possible without the continuous support of the [Andalusian Population Health Database (BPS)](https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/profesionales/sistemas-de-informacion/base-poblacional-de-salud) and their diligent efforts in maintaining the database over the years (specially Dolores Muñoyerro-Muñiz and Román Villegas).
+
+## Funding
+
+This study was funded by AstraZeneca project “Retrospective observational study for the development of early predictors of high grade serous ovarian cancer” (ES-2021-3211) and is also supported by grants PID2020-117979RB-I00 from the Spanish Ministry of Science and Innovation and grant IE19_259 FPS from Consejeria de Salud y Consumo, Junta de Andalucía.

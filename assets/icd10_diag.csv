@@ -1,0 +1,136 @@
+,Non-chronic diagnoses,ICD-10
+0,Unspecified abdominal pain,R10.9
+1,Epigastric pain,R10.13
+2,"Unspecified ovarian cyst, unspecified side",N83.20
+3,"Intra-abdominal and pelvic swelling, mass or lump",R19.00
+4,Postmenopausal bleeding,N95.0
+5,Excessive and frequent menstruation with irregular cycle,N92.1
+6,Abdominal distension (gaseous),R14.0
+7,"Lower abdominal pain, unspecified",R10.30
+8,"Leiomyoma of uterus, unspecified",D25.9
+9,Other ascites,R18.8
+10,"Vomiting, unspecified",R11.10
+11,Right lower quadrant pain,R10.31
+12,"Unspecified ovarian cyst, right side",N83.201
+13,"Unspecified ovarian cyst, left side",N83.202
+14,Malignant ascites,R18.0
+15,Irritable bowel syndrome without diarrhea,K58.9
+16,Calculus of gallbladder without cholecystitis without obstruction,K80.20
+17,"Abnormal uterine and vaginal bleeding, unspecified",N93.9
+18,"Dysphagia, unspecified",R13.10
+19,"Cystocele, unspecified",N81.10
+20,Acute vaginitis,N76.0
+21,Change in bowel habit,R19.4
+22,Benign neoplasm of unspecified ovary,D27.9
+23,"Endometriosis, unspecified",N80.9
+24,Generalized abdominal pain,R10.84
+25,"Upper abdominal pain, unspecified",R10.12
+26,"Gastritis, unspecified, without bleeding",K29.70
+27,Complete uterovaginal prolapse,N81.4
+28,Functional dyspepsia,K30
+29,Chronic atrophic gastritis without bleeding,K29.40
+30,Flatulence,R14.2
+31,Unspecified chronic gastritis without bleeding,K29.50
+32,Pelvic and perineal pain,R10.2
+33,Benign neoplasm of right ovary,D27.0
+34,Left lower quadrant pain,R10.32
+35,"Generalized intra-abdominal and pelvic swelling, mass and lump",R19.07
+36,Calculus of gallbladder with chronic cholecystitis without obstruction,K80.10
+37,Diffuse cystic mastopathy of unspecified breast,N60.19
+38,Diverticulosis of large intestine without perforation or abscess without bleeding,K57.30
+39,Calculus of gallbladder and bile duct without cholecystitis without obstruction,K80.60
+40,Benign neoplasm of left ovary,D27.1
+41,Acute vulvitis,N76.1
+42,"Uterovaginal prolapse, unspecified",N81.9
+43,Subserosal leiomyoma of uterus,D25.2
+44,"Female pelvic inflammatory disease, unspecified",N73.9
+45,Duodenitis without bleeding,K29.80
+46,Acute gastritis without bleeding,K29.00
+47,"Esophagitis, unspecified",K20.9
+48,"Female genital prolapse, unspecified",N99.3
+49,"Irregular menstruation, unspecified",N92.6
+50,Nausea,R11.0
+51,Vaginal enterocele,N81.5
+52,Calculus of bile duct without cholangitis or cholecystitis without obstruction,K80.50
+53,"Crohn's disease, unspecified, without complications",K50.90
+54,Hemorrhage of anus and rectum,K62.5
+55,Unspecified acute appendicitis,K35.80
+56,Rectocele,N81.6
+57,Colic,R10.83
+58,Pruritus vulvae,L29.2
+59,"Other ovarian cyst, left side",N83.292
+60,Excessive bleeding in the premenopausal period,N92.4
+61,Calculus of gallbladder with acute cholecystitis without obstruction,K80.00
+62,Right upper quadrant pain,R10.11
+63,Endometriosis of uterus,N80.0
+64,Heartburn,R12
+65,Acute abdomen,R10.0
+66,Embryonic cyst of broad ligament,N83.8
+67,Diverticulosis of small intestine without perforation or abscess without bleeding,K57.10
+68,Anal fistula,K60.3
+69,Diverticulosis of large intestine without perforation or abscess with bleeding,K57.31
+70,"Nausea with vomiting, unspecified",R11.2
+71,Chronic salpingitis,N70.1
+72,"Diverticulosis of intestine, part unspecified, without perforation or abscess without bleeding",K57.90
+73,"Gastric ulcer, unspecified as acute or chronic, without hemorrhage or perforation",K27.9
+74,Postmenopausal atrophic vaginitis,N95.2
+75,Diverticulitis of large intestine without perforation or abscess without bleeding,K57.32
+76,Chronic superficial gastritis without bleeding,K29.30
+77,Diaphragmatic hernia without obstruction or gangrene,K44.9
+78,"Other intra-abdominal and pelvic swelling, mass and lump",R19.09
+79,Solitary cyst of unspecified breast,N60.01
+80,"Inflammatory disease of uterus, unspecified",N71.9
+81,Geographic tongue,K14.1
+82,Other gastritis without bleeding,K29.60
+83,"Anal fissure, unspecified",K60.0
+84,Chronic anal fissure,K60.1
+85,Crohn's disease of both small and large intestine without complications,K50.80
+86,Chronic or unspecified gastric ulcer with hemorrhage,K25.4
+87,Female pelvic peritoneal adhesions (postinfective),N73.6
+88,Unspecified jaundice,R17
+89,Menopausal and female climacteric states,N95.1
+90,"Other ovarian cyst, unspecified side",N83.290
+91,Left upper quadrant pain,R10.12
+92,Eosinophilic esophagitis,K20.0
+93,Other dysphagia,R13.19
+94,Mild cervical dysplasia,N87.0
+95,"Acute appendicitis with generalized peritonitis, without abscess",K35.2
+96,"Other noninflammatory disorders of ovary, fallopian tube and broad ligament",N83.8
+97,Submucous leiomyoma of uterus,D25.0
+98,Moderate cervical dysplasia,N87.1
+99,Melena,K92.1
+100,Anal spasm,K59.4
+101,Excessive and frequent menstruation with regular cycle,N92.0
+102,Other cholelithiasis without obstruction,K80.80
+103,Crohn's disease of small intestine without complications,K50.00
+104,Endometriosis of ovary,N80.1
+105,Other impaction of intestine,K56.41
+106,Intramural leiomyoma of uterus,D25.1
+107,"Dysplasia of cervix uteri, unspecified",N87.9
+108,Candidiasis of vulva and vagina,B37.3
+109,Hematemesis,K92.0
+110,Bilious vomiting,R11.14
+111,Calculus of gallbladder and bile duct without cholecystitis with obstruction,K80.61
+112,"Diverticulitis of intestine, part unspecified, without perforation or abscess without bleeding",K57.92
+113,"Other ovarian cyst, right side",N83.291
+114,"Diaphragmatic hernia with obstruction, without gangrene",K44.0
+115,Other specified abnormal uterine and vaginal bleeding,N93.8
+116,Irritable bowel syndrome with diarrhea,K58.0
+117,Incomplete uterovaginal prolapse,N81.3
+118,Full incontinence of feces,R15.2
+119,Fecal impaction,K56.41
+120,Crohn's disease of large intestine without complications,K50.10
+121,Other esophagitis,K20.8
+122,"Diverticulitis of intestine, part unspecified, with perforation and abscess without bleeding",K57.93
+123,Other specified inflammation of vagina and vulva,N76.8
+124,"Left lower quadrant abdominal swelling, mass and lump",R19.04
+125,Chronic duodenal ulcer without hemorrhage or perforation,K26.7
+126,Postcoital and contact bleeding,N93.0
+127,"Unspecified foreign body in esophagus causing other injury, initial encounter",T18.108A
+128,"Echinococcosis, unspecified",B67.9
+129,"Diverticulosis of intestine, part unspecified, without perforation or abscess with bleeding",K57.91
+130,Calculus of gallbladder with chronic cholecystitis with obstruction,K80.11
+131,Acquired atrophy of right ovary,N83.31
+132,Follicular cyst of left ovary,N83.02
+133,Periumbilical pain,R10.33
+134,Calculus of bile duct with acute cholangitis without obstruction,K80.41
