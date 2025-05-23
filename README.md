@@ -106,7 +106,7 @@ This repository uses [DVC](https://dvc.org/) to manage a pipeline that will retr
 
 #### Data
 
-The pipeline expects to find the OMOP tables in .parquet format within the folder defined by the environment variable `REMOTE_RAW_OMOP_DATA`. The contents of this directory will be copied in
+The model was designed to work with [OMOP-CDM v5.4](https://ohdsi.github.io/CommonDataModel/cdm54.html) tables. The pipeline expects to find the OMOP tables in .parquet format within the folder defined by the environment variable `REMOTE_RAW_OMOP_DATA`. The contents of this directory will be copied in
 a local folder defined by the environment variable `DATA_PATH`. In our implementation, this variable should point to a `data/` folder inside the repository, which is ignored by git.
 
 Please note that depending on the dvc version you use folders monitored by DVC cannot exist
